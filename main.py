@@ -5,14 +5,23 @@ from PySide6.QtWidgets import QApplication
 from interface.janela_principal import JanelaPrincipal
 from interface.estilo import obter_estilo
 
+from banco_dados.conexao import criar_tabelas
 
-app = QApplication(sys.argv)
 
-# Aplica o tema visual ao aplicativo
-app.setStyleSheet(obter_estilo())
+def main():
+    criar_tabelas()
 
-# Cria e exibe a janela principal
-janela = JanelaPrincipal()
-janela.show()
+    app = QApplication(sys.argv)
 
-sys.exit(app.exec())
+    app.setStyleSheet(obter_estilo())
+
+    janela = JanelaPrincipal()
+
+    # Preserve aqui a aplicação do tema, se já existir.
+    janela.show()
+
+    sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()

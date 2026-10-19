@@ -26,6 +26,8 @@ from calculos.custos import (
     calcular_custo_por_peca,
 )
 
+from interface.tela_cadastros import TelaCadastros
+
 
 class JanelaPrincipal(QMainWindow):
     def __init__(self):
@@ -47,6 +49,11 @@ class JanelaPrincipal(QMainWindow):
         self.criar_cabecalho()
         self.criar_area_conteudo()
         self.atualizar_resultados()
+
+        self.menuBar().addAction(
+            "Cadastros",
+            self.abrir_cadastros
+        )
 
     def criar_cabecalho(self):
         cabecalho = QFrame()
@@ -347,3 +354,7 @@ class JanelaPrincipal(QMainWindow):
         self.valor_custo_peca.setText(
             self.formatar_moeda(custo_peca, 4)
         )
+        
+    def abrir_cadastros(self):
+        tela = TelaCadastros(self)
+        tela.exec()
